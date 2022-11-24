@@ -62,7 +62,8 @@ class Personne {
       "traitementCourant": traitementCourant,
       "alergie": alergie,
       "deGarde": deGarde,
-      "fonction": fonction,
+      // "fonction": fonction,
+      "fonction": "PATIENT",
       "assure": assure,
     };
   }

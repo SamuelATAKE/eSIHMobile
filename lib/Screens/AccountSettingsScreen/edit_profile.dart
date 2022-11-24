@@ -21,13 +21,12 @@ class EditProfile extends StatefulWidget {
   _EditProfileState createState() => _EditProfileState();
 }
 
-const TextStyle _textStyle= TextStyle(
-  fontSize: 12,
-  fontWeight: FontWeight.bold,
-  letterSpacing: 2,
-  fontStyle: FontStyle.italic,
-  color: Colors.white
-);
+const TextStyle _textStyle = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 2,
+    fontStyle: FontStyle.italic,
+    color: Colors.white);
 
 class _EditProfileState extends State<EditProfile> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -70,14 +69,13 @@ class _EditProfileState extends State<EditProfile> {
       'value': 'AM',
       'label': 'A -',
     },
-
     {
-    'value': 'BP',
-    'label': 'B +',
+      'value': 'BP',
+      'label': 'B +',
     },
     {
-    'value': 'BM',
-    'label': 'B -',
+      'value': 'BM',
+      'label': 'B -',
     },
     {
       'value': 'OP',
@@ -104,11 +102,13 @@ class _EditProfileState extends State<EditProfile> {
       adresseResidenceController.text =
           loggedUtilisateur.personne.toMap()["adresseResidence"];
       dateInput.text = loggedUtilisateur.personne.toMap()["dateNaissance"];
-      genreInput.text = loggedUtilisateur.personne.toMap()["genre"];
+      genreInput.text = loggedUtilisateur.personne.toMap()["genre"]
+          ? loggedUtilisateur.personne.toMap()["genre"]
+          : "";
     });
     print("The loggedUser");
     print(loggedUtilisateur.toMap());
-    print('L\'utilisateur, $loggedUtilisateur.personne.nom');
+    print('L\'utilisateur, ${loggedUtilisateur.personne.nom}');
     print(loggedUtilisateur.personne.toMap()["nom"]);
   }
 
@@ -168,7 +168,10 @@ class _EditProfileState extends State<EditProfile> {
                     }),
                   );
                 },
-                child: const Text('Modifier son mot de passe', style: _textStyle,),
+                child: const Text(
+                  'Modifier son mot de passe',
+                  style: _textStyle,
+                ),
               ),
             ),
             const SizedBox(
@@ -208,7 +211,10 @@ class _EditProfileState extends State<EditProfile> {
                         hintText: "Genre",
                         prefixIcon: Padding(
                           padding: EdgeInsets.all(defaultPadding),
-                          child: Icon(Icons.person, color: greenColor,),
+                          child: Icon(
+                            Icons.person,
+                            color: greenColor,
+                          ),
                         ),
                       ),
                       // icon: const Icon(Icons.person, color: greenColor,),
@@ -261,7 +267,10 @@ class _EditProfileState extends State<EditProfile> {
                         hintText: "Votre date de naissance",
                         prefixIcon: Padding(
                           padding: EdgeInsets.all(defaultPadding),
-                          child: Icon(Icons.calendar_today, color: greenColor,),
+                          child: Icon(
+                            Icons.calendar_today,
+                            color: greenColor,
+                          ),
                         ),
                       ),
                       readOnly: true,

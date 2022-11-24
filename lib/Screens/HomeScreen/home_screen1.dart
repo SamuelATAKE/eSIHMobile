@@ -5,6 +5,8 @@ import 'package:esihapp/Screens/SpecialiteScreen/specialite_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+import '../HealthScreens/health_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
 
@@ -15,18 +17,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
+  // ignore: prefer_final_fields
+  List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    SpecialiteScreen(),
-    SpecialiteScreen(),
+    const SpecialiteScreen(),
+    const HealthScreen(),
     // AgendaScreen(),
-    AccountSettingsScreen()
+    const AccountSettingsScreen()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(child: _widgetOptions.elementAt(_selectedIndex)),
+      body: SingleChildScrollView(
+          child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: GNav(
           backgroundColor: Colors.greenAccent,
           color: Colors.white,

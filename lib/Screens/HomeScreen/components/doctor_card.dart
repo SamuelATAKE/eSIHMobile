@@ -24,11 +24,11 @@ class DoctorCard extends StatelessWidget {
       },
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: _bgColor.withOpacity(0.1),
+          color: _bgColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: ListTile(
             leading: Image.asset(_imageUrl),
             title: Text(

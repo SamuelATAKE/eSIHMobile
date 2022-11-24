@@ -23,12 +23,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _widgetOptions = const [
-    HomePage(),
-    SpecialiteScreen(),
-    HealthScreen(),
+  final List<Widget> _widgetOptions = [
+    const HomePage(),
+    const SpecialiteScreen(),
+    const HealthScreen(),
     // AgendaScreen(),
-    AccountSettingsScreen()
+    const AccountSettingsScreen()
   ];
 
   @override

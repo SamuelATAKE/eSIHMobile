@@ -108,6 +108,7 @@ class ApiManager {
     print("Auth token: $authentication");
     print("Le token");
     print("Bearer $authentication");
+    personne.fonction = "PATIENT";
     var body = jsonEncode(personne.toMap());
     print(body);
     var response =
@@ -577,5 +578,31 @@ class ApiManager {
     }
     // print("Les rdvs: $rdvs");
     return rdvs;
+  }
+
+  Future<List<Personne>> getMedecins() async {
+    var doctorsUrl = "$apiUrl/api/utilisateur/employes/MEDECIN";
+    var authentication = await authenticate();
+    var res = await http.get(Uri.parse(doctorsUrl), headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $authentication",
+    });
+
+    var body = jsonDecode(res.body) as List;
+
+    List<Personne> medecins = <Personne>[];
+
+    for (var element in body) {
+      print('Element: ' + element.toString());
+      Personne personne = Personne();
+      personne.nom = element["personne"]["nom"];
+      personne.prenom = element["personne"]["prenom"];
+      personne.id = element["id"];
+      personne.genre = element["personne"]["genre"];
+      personne.specialite = element["personne"]["specialite"];
+      medecins.add(personne);
+    }
+
+    return medecins;
   }
 }
