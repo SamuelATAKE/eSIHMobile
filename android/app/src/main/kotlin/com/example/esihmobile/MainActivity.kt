@@ -1,4 +1,4 @@
-package com.example.esihapp
+package com.example.esihmobile
 
 import io.flutter.embedding.android.FlutterActivity
 

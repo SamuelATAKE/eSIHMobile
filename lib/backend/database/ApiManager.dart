@@ -18,7 +18,7 @@ import 'package:intl/intl.dart';
 class ApiManager {
   ApiManager._();
   static final ApiManager instance = ApiManager._();
-  static const String apiUrl = "http://192.168.1.72:8080";
+  static const String apiUrl = "http://130.61.238.121:8082";
   // static const String apiUrl = "http://192.168.1.102:8080";
 
   var patientUrl = "$apiUrl/api/utilisateur/patient";
@@ -34,7 +34,7 @@ class ApiManager {
 
   dynamic authToken = SessionManager().get("token");
 
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   // static const Map<String, String> secureHeaders = {
   //   "Content-Type": "application/json",
@@ -58,7 +58,7 @@ class ApiManager {
           key: 'logUser', value: jsonEncode(loggedUser.toMap()));
     }
 
-    var status = await response.statusCode;
+    var status = response.statusCode;
 
     return status;
   }
@@ -120,30 +120,28 @@ class ApiManager {
     var body0;
     int id = 0;
     Personne newPersonne = Personne();
-    if (response.body != null) {
-      print("Auth token3: " + response.body);
-      body0 = json.decode(response.body);
-      print("Le corps de la réponse");
-      print(body0);
-      Personne newP = Personne.fromMap(body0);
-      id = body0["id"] as int;
-      print("Personne créée");
-      print(newP.toMap());
-      print(body0["id"]);
-      id = body0["id"] as int;
+    print("Auth token3: " + response.body);
+    body0 = json.decode(response.body);
+    print("Le corps de la réponse");
+    print(body0);
+    Personne newP = Personne.fromMap(body0);
+    id = body0["id"] as int;
+    print("Personne créée");
+    print(newP.toMap());
+    print(body0["id"]);
+    id = body0["id"] as int;
 
-      newPersonne.id = body0["id"];
-      newPersonne.nom = body0["nom"];
-      newPersonne.prenom = body0["prenom"];
-      newPersonne.genre = body0["genre"];
-      newPersonne.contact1 = body0["contact1"];
-      newPersonne.dateNaissance = body0["dateNaissance"];
-      newPersonne.email = body0["email"];
-      newPersonne.matricule = body0["matricule"];
+    newPersonne.id = body0["id"];
+    newPersonne.nom = body0["nom"];
+    newPersonne.prenom = body0["prenom"];
+    newPersonne.genre = body0["genre"];
+    newPersonne.contact1 = body0["contact1"];
+    newPersonne.dateNaissance = body0["dateNaissance"];
+    newPersonne.email = body0["email"];
+    newPersonne.matricule = body0["matricule"];
 
-      print("L'id de la personne");
-      print(id);
-    }
+    print("L'id de la personne");
+    print(id);
 
     return newPersonne;
   }
@@ -158,13 +156,11 @@ class ApiManager {
     });
     var body;
     Role role = Role();
-    if (response.body != null) {
-      body = json.decode(response.body);
-      print("The body");
-      print(body);
-      role.id = body["id"] as int;
-      role.titre = body["titre"];
-    }
+    body = json.decode(response.body);
+    print("The body");
+    print(body);
+    role.id = body["id"] as int;
+    role.titre = body["titre"];
     print("Le role obtenu");
     print(role.toMap());
     return role;
@@ -215,29 +211,26 @@ class ApiManager {
     print("the response.body");
     var body0;
 
-    if (response.body != null) {
-      print("Auth: " + response.body);
-      body0 = json.decode(response.body);
-      print("Le corps de la réponse");
-      print(body0);
+    print("Auth: " + response.body);
+    body0 = json.decode(response.body);
+    print("Le corps de la réponse");
+    print(body0);
 
-      utilisateur.personne.id = body0["id"];
-      utilisateur.personne.nom = body0["nom"];
-      utilisateur.personne.prenom = body0["prenom"];
-      utilisateur.personne.email = body0["email"];
-      utilisateur.personne.matricule = body0["matricule"];
-      utilisateur.personne.dateNaissance = body0["dateNaissance"];
-      utilisateur.personne.contact1 = body0["contact1"];
-      utilisateur.personne.genre = body0["genre"];
-      utilisateur.personne.alergie = body0["alergie"];
-      utilisateur.personne.groupeSanguin = body0["groupeSanguin"];
-      utilisateur.personne.profession = body0["profession"];
-      utilisateur.personne.sousTraitement = body0["sousTraitement"];
-      utilisateur.personne.contact2 = body0["contact2"];
-      utilisateur.personne.adresseResidence = body0["adresseResidence"];
-      await storage.write(
-          key: 'logUser', value: jsonEncode(utilisateur.toMap()));
-    }
+    utilisateur.personne.id = body0["id"];
+    utilisateur.personne.nom = body0["nom"];
+    utilisateur.personne.prenom = body0["prenom"];
+    utilisateur.personne.email = body0["email"];
+    utilisateur.personne.matricule = body0["matricule"];
+    utilisateur.personne.dateNaissance = body0["dateNaissance"];
+    utilisateur.personne.contact1 = body0["contact1"];
+    utilisateur.personne.genre = body0["genre"];
+    utilisateur.personne.alergie = body0["alergie"];
+    utilisateur.personne.groupeSanguin = body0["groupeSanguin"];
+    utilisateur.personne.profession = body0["profession"];
+    utilisateur.personne.sousTraitement = body0["sousTraitement"];
+    utilisateur.personne.contact2 = body0["contact2"];
+    utilisateur.personne.adresseResidence = body0["adresseResidence"];
+    await storage.write(key: 'logUser', value: jsonEncode(utilisateur.toMap()));
     return response.statusCode;
   }
 
@@ -256,36 +249,34 @@ class ApiManager {
     Utilisateur utilisateur =
         Utilisateur.NewUtilisateur(userName: "", password: "");
 
-    if (response.body != null) {
-      body = json.decode(response.body);
-      print(body);
-      utilisateur.id = body["id"];
-      utilisateur.userName = body["username"];
-      utilisateur.password = body["password"];
-      utilisateur.active = body["active"];
-      utilisateur.role = Role.fromMap(body["role"]);
+    body = json.decode(response.body);
+    print(body);
+    utilisateur.id = body["id"];
+    utilisateur.userName = body["username"];
+    utilisateur.password = body["password"];
+    utilisateur.active = body["active"];
+    utilisateur.role = Role.fromMap(body["role"]);
 
-      utilisateur.personne.id = body["personne"]["id"];
-      utilisateur.personne.nom = body["personne"]["nom"];
-      utilisateur.personne.prenom = body["personne"]["prenom"];
-      utilisateur.personne.email = body["personne"]["email"];
-      utilisateur.personne.matricule = body["personne"]["matricule"];
-      utilisateur.personne.dateNaissance = body["personne"]["dateNaissance"];
-      utilisateur.personne.contact1 = body["personne"]["contact1"];
-      utilisateur.personne.genre = body["personne"]["genre"];
-      utilisateur.personne.alergie = body["personne"]["alergie"];
-      utilisateur.personne.groupeSanguin = body["personne"]["groupeSanguin"];
-      utilisateur.personne.profession = body["personne"]["profession"];
-      utilisateur.personne.sousTraitement = body["personne"]["sousTraitement"];
-      utilisateur.personne.contact2 = body["personne"]["contact2"];
-      utilisateur.personne.adresseResidence =
-          body["personne"]["adresseResidence"];
+    utilisateur.personne.id = body["personne"]["id"];
+    utilisateur.personne.nom = body["personne"]["nom"];
+    utilisateur.personne.prenom = body["personne"]["prenom"];
+    utilisateur.personne.email = body["personne"]["email"];
+    utilisateur.personne.matricule = body["personne"]["matricule"];
+    utilisateur.personne.dateNaissance = body["personne"]["dateNaissance"];
+    utilisateur.personne.contact1 = body["personne"]["contact1"];
+    utilisateur.personne.genre = body["personne"]["genre"];
+    utilisateur.personne.alergie = body["personne"]["alergie"];
+    utilisateur.personne.groupeSanguin = body["personne"]["groupeSanguin"];
+    utilisateur.personne.profession = body["personne"]["profession"];
+    utilisateur.personne.sousTraitement = body["personne"]["sousTraitement"];
+    utilisateur.personne.contact2 = body["personne"]["contact2"];
+    utilisateur.personne.adresseResidence =
+        body["personne"]["adresseResidence"];
 
-      print(utilisateur.personne);
-      print("The personne id");
-      print(body["personne"]["id"]);
-      utilisateur = Utilisateur.fromMap(body);
-    }
+    print(utilisateur.personne);
+    print("The personne id");
+    print(body["personne"]["id"]);
+    utilisateur = Utilisateur.fromMap(body);
     print("User findbyusername:");
     print(utilisateur.id);
     return utilisateur;

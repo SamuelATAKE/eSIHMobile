@@ -6,7 +6,6 @@ import 'package:esihapp/utils/constants.dart';
 import 'package:esihapp/utils/green_intro_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -15,7 +14,7 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class EditProfile extends StatefulWidget {
-  EditProfile({Key? key}) : super(key: key);
+  const EditProfile({Key? key}) : super(key: key);
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -128,7 +127,7 @@ class _EditProfileState extends State<EditProfile> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               height: Get.height * 0.4,
               child: Stack(
                 children: [
@@ -164,7 +163,7 @@ class _EditProfileState extends State<EditProfile> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) {
-                      return EditPassword();
+                      return const EditPassword();
                     }),
                   );
                 },
@@ -357,12 +356,12 @@ class _EditProfileState extends State<EditProfile> {
 
       if (updateStatus == 200) {
         // ignore: use_build_context_synchronously
-        showTopSnackBar(context,
+        showTopSnackBar(OverlayState(),
             const CustomSnackBar.success(message: "Mise à jour avec succès!"));
       } else {
         // ignore: use_build_context_synchronously
         showTopSnackBar(
-            context,
+            OverlayState(),
             const CustomSnackBar.info(
                 message: "Erreur lors de la mise à jour!"));
       }

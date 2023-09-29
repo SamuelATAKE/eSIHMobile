@@ -13,12 +13,12 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     User? user = User(password: '', userName: '');
     ApiManager api = ApiManager.instance;
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         // resizeToAvoidBottomInsets: true,
         children: [
@@ -63,12 +63,12 @@ class LoginForm extends StatelessWidget {
             tag: "login_btn",
             child: ElevatedButton(
               onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
                   print(user.userName.toString());
                   print("Printing");
                   print(user.password.toString());
-                  _formKey.currentState!.save();
+                  formKey.currentState!.save();
                   int res = await api.login(user);
 
                   print(res);
@@ -83,13 +83,13 @@ class LoginForm extends StatelessWidget {
                     );
                     // ignore: use_build_context_synchronously
                     showTopSnackBar(
-                        context,
+                        OverlayState(),
                         const CustomSnackBar.success(
                             message: "Connexion avec succès!"));
                   } else {
                     // ignore: use_build_context_synchronously
                     showTopSnackBar(
-                        context,
+                        OverlayState(),
                         const CustomSnackBar.info(
                             message: "Identifiants incorrects!"));
                   }

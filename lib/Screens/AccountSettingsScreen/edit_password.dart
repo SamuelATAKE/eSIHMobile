@@ -7,7 +7,7 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class EditPassword extends StatefulWidget {
-  EditPassword({Key? key}) : super(key: key);
+  const EditPassword({Key? key}) : super(key: key);
 
   @override
   _EditPasswordState createState() => _EditPasswordState();
@@ -65,7 +65,7 @@ class _EditPasswordState extends State<EditPassword> {
                           onChanged: (value) {
                             if (value.isNotEmpty) {
                             } else if (value.length >= 8) {}
-                            return null;
+                            return;
                           },
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -89,7 +89,7 @@ class _EditPasswordState extends State<EditPassword> {
                           onChanged: (value) {
                             if (value.isNotEmpty) {
                             } else if (value.length >= 8) {}
-                            return null;
+                            return;
                           },
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -113,7 +113,7 @@ class _EditPasswordState extends State<EditPassword> {
                           onChanged: (value) {
                             if (value.isNotEmpty) {
                             } else if (value.length >= 8) {}
-                            return null;
+                            return;
                           },
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -139,9 +139,9 @@ class _EditPasswordState extends State<EditPassword> {
                           height: getProportionateScreenHeight(56),
                           child: TextButton(
                             style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20)),
-                              primary: Colors.white,
                               backgroundColor: kPrimaryColor,
                             ),
                             onPressed: () async {
@@ -165,7 +165,7 @@ class _EditPasswordState extends State<EditPassword> {
                                   if (status == 200) {
                                     // ignore: use_build_context_synchronously
                                     showTopSnackBar(
-                                        context,
+                                        OverlayState(),
                                         const CustomSnackBar.success(
                                             message:
                                                 "Mise à jour avec succès!"));
@@ -175,7 +175,7 @@ class _EditPasswordState extends State<EditPassword> {
                                   } else {
                                     // ignore: use_build_context_synchronously
                                     showTopSnackBar(
-                                        context,
+                                        OverlayState(),
                                         const CustomSnackBar.error(
                                             message:
                                                 "Une erreur est survenue lors de la mise à jour!"));
