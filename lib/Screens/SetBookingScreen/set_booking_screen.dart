@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:esihapp/Screens/SetBookingScreen/components/my_input_field.dart';
 import 'package:esihapp/backend/database/ApiManager.dart';
 import 'package:esihapp/backend/model/Utilisateur.dart';
 import 'package:esihapp/services/notification_service.dart';
@@ -195,7 +194,7 @@ class _SetBookingScreenState extends State<SetBookingScreen> {
 
                             if (status == 200) {
                               showTopSnackBar(
-                                  context,
+                                  OverlayState(),
                                   const CustomSnackBar.success(
                                       message:
                                           "Rendez-vous pris avec succès!"));
@@ -209,7 +208,7 @@ class _SetBookingScreenState extends State<SetBookingScreen> {
                             } else {
                               print("Noooooooooooo");
                               showTopSnackBar(
-                                  context,
+                                  OverlayState(),
                                   const CustomSnackBar.info(
                                       message:
                                           "Erreur lors de la prise de rendez-vous!"));

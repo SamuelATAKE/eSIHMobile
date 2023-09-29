@@ -15,7 +15,7 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     Utilisateur utilisateur =
         Utilisateur.NewUtilisateur(userName: "", password: "");
     Personne personne = Personne();
@@ -27,15 +27,14 @@ class SignUpForm extends StatelessWidget {
     ApiManager api = ApiManager.instance;
     int state = 0;
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         children: [
-
           TextFormField(
             textInputAction: TextInputAction.done,
             cursorColor: kPrimaryColor,
             validator: (value) =>
-            (value!.isEmpty ? "Veuillez entrer votre nom" : null),
+                (value!.isEmpty ? "Veuillez entrer votre nom" : null),
             decoration: const InputDecoration(
               hintText: "Votre nom",
               prefixIcon: Padding(
@@ -51,7 +50,7 @@ class SignUpForm extends StatelessWidget {
               textInputAction: TextInputAction.done,
               cursorColor: kPrimaryColor,
               validator: (value) =>
-              (value!.isEmpty ? "Veuillez entrer votre prénom" : null),
+                  (value!.isEmpty ? "Veuillez entrer votre prénom" : null),
               decoration: const InputDecoration(
                 hintText: "Votre prénom",
                 prefixIcon: Padding(
@@ -89,9 +88,10 @@ class SignUpForm extends StatelessWidget {
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               cursorColor: kPrimaryColor,
-              validator: (value) => value!.isEmpty || !value.contains(RegExp("@"))
-                  ? "Veuillez entrez votre adresse mail valide!"
-                  : null,
+              validator: (value) =>
+                  value!.isEmpty || !value.contains(RegExp("@"))
+                      ? "Veuillez entrez votre adresse mail valide!"
+                      : null,
               onSaved: (email) {
                 personne.email = email!;
               },
@@ -126,7 +126,7 @@ class SignUpForm extends StatelessWidget {
                 if (pickedDate != null) {
                   print(pickedDate);
                   String formattedDate =
-                  DateFormat('yyyy-MM-dd').format(pickedDate);
+                      DateFormat('yyyy-MM-dd').format(pickedDate);
                   print(formattedDate);
 
                   personne.dateNaissance =
@@ -186,7 +186,9 @@ class SignUpForm extends StatelessWidget {
               cursorColor: kPrimaryColor,
               validator: (value) => (value!.isEmpty
                   ? "Veuillez confirmer votre mot de passe"
-                  : (value != password)? "Les mots de passe ne correspondent pas" : null),
+                  : (value != password)
+                      ? "Les mots de passe ne correspondent pas"
+                      : null),
               decoration: const InputDecoration(
                 hintText: "Confirmer votre mot de passe",
                 prefixIcon: Padding(
@@ -194,14 +196,15 @@ class SignUpForm extends StatelessWidget {
                   child: Icon(Icons.lock),
                 ),
               ),
-              onSaved: (confirmPassword) => utilisateur.password = confirmPassword!,
+              onSaved: (confirmPassword) =>
+                  utilisateur.password = confirmPassword!,
             ),
           ),
           const SizedBox(height: defaultPadding / 2),
           ElevatedButton(
             onPressed: () async {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
                 print(utilisateur.password);
                 print(utilisateur.userName);
                 print(personne.email);
@@ -221,10 +224,11 @@ class SignUpForm extends StatelessWidget {
                       },
                     ),
                   );
-                }else {
+                } else {
                   showTopSnackBar(
-                      context, const CustomSnackBar.info(
-                      message: "Ce nom d'utilisateur existe déjà!"));
+                      OverlayState(),
+                      const CustomSnackBar.info(
+                          message: "Ce nom d'utilisateur existe déjà!"));
                 }
               }
             },
